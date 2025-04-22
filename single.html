@@ -11,46 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<!-- Virtual Keyboard Container -->
-<section id="virtual-keyboard" style="padding: 2em; text-align: center;">
-	<h3>Virtual Keyboard</h3>
-	<textarea id="keyboard-output" rows="4" style="width: 100%; max-width: 600px;"></textarea>
-	<div id="keyboard" style="margin-top: 1em;"></div>
-</section>
 
-<script>
-	const keys = [
-		['Q','W','E','R','T','Y','U','I','O','P'],
-		['A','S','D','F','G','H','J','K','L'],
-		['Z','X','C','V','B','N','M'],
-		['Space','Backspace']
-	];
-
-	const keyboardContainer = document.getElementById("keyboard");
-	const output = document.getElementById("keyboard-output");
-
-	keys.forEach(row => {
-		const rowDiv = document.createElement('div');
-		row.forEach(key => {
-			const button = document.createElement('button');
-			button.textContent = key;
-			button.style.margin = "5px";
-			button.style.padding = "10px 15px";
-			button.style.fontSize = "16px";
-			button.addEventListener('click', () => {
-				if (key === 'Backspace') {
-					output.value = output.value.slice(0, -1);
-				} else if (key === 'Space') {
-					output.value += ' ';
-				} else {
-					output.value += key;
-				}
-			});
-			rowDiv.appendChild(button);
-		});
-		keyboardContainer.appendChild(rowDiv);
-	});
-</script>
 
 	<body class="single is-preload">
 
@@ -184,4 +145,70 @@
 			<script src="assets/js/main.js"></script>
 
 	</body>
+		<!-- Virtual Keyboard Container -->
+<section id="virtual-keyboard" style="text-align: center; padding: 2em;">
+	<h3>Virtual Keyboard</h3>
+	<!-- Textbox centered -->
+	<textarea id="keyboard-output" rows="4" style="width: 100%; max-width: 600px; margin-bottom: 20px; font-size: 18px; padding: 10px; text-align: center; border-radius: 5px; border: 1px solid #ccc; font-family: Arial, sans-serif;"></textarea>
+
+	<!-- Keyboard Layout -->
+	<div id="keyboard" style="display: flex; flex-direction: column; align-items: center;"></div>
+</section>
+
+<script>
+	const keys = [
+		['Q','W','E','R','T','Y','U','I','O','P'],
+		['A','S','D','F','G','H','J','K','L'],
+		['Z','X','C','V','B','N','M'],
+		['Space','Backspace']
+	];
+
+	const keyboardContainer = document.getElementById("keyboard");
+	const output = document.getElementById("keyboard-output");
+
+	keys.forEach((row, rowIndex) => {
+		const rowDiv = document.createElement('div');
+		rowDiv.style.display = "flex";
+		rowDiv.style.marginBottom = "10px"; // Space between rows
+
+		row.forEach(key => {
+			const button = document.createElement('button');
+			button.textContent = key;
+			button.style.margin = "5px";
+			button.style.padding = "15px 20px";
+			button.style.fontSize = "18px";
+			button.style.cursor = "pointer";
+			button.style.border = "none";
+			button.style.borderRadius = "5px";
+			button.style.backgroundColor = "#3498db"; // Blue background
+			button.style.color = "white";
+			button.style.transition = "background-color 0.3s, transform 0.1s";
+			button.style.fontFamily = "Arial, sans-serif";
+
+			// Add hover and click effects
+			button.addEventListener('mouseover', () => {
+				button.style.backgroundColor = "#2980b9"; // Darker blue on hover
+			});
+			button.addEventListener('mouseout', () => {
+				button.style.backgroundColor = "#3498db"; // Reset back to normal
+			});
+			button.addEventListener('click', () => {
+				if (key === 'Backspace') {
+					output.value = output.value.slice(0, -1);
+				} else if (key === 'Space') {
+					output.value += ' ';
+				} else {
+					output.value += key;
+				}
+			});
+
+			// Add the button to the row
+			rowDiv.appendChild(button);
+		});
+
+		// Add the row to the keyboard container
+		keyboardContainer.appendChild(rowDiv);
+	});
+</script>
+
 </html>
