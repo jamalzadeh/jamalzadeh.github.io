@@ -167,6 +167,10 @@
 				button.style.backgroundColor = "white"; // Reset to white
 			});
 			button.addEventListener('click', () => {
+				// Vibrate if supported
+				if (navigator.vibrate) {
+        			navigator.vibrate(30); // Short vibration
+    			}
 				if (key === 'Backspace') {
 					output.value = output.value.slice(0, -1);
 				} else if (key === 'Space') {
