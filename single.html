@@ -111,7 +111,7 @@
 								</header>
 								<!-- Virtual Keyboard Container -->
 <section id="virtual-keyboard" style="text-align: center; padding: 2em;">
-	<h3>Try this virtual keyboard.</h3>
+	<h3>Virtual Keyboard</h3>
 	<!-- Textbox with increased max-width -->
 	<textarea id="keyboard-output" rows="4" style="width: 100%; max-width: 1500px; margin-bottom: 20px; font-size: 18px; padding: 10px; text-align: center; border-radius: 5px; border: 1px solid #ccc; font-family: Arial, sans-serif;"></textarea>
 
@@ -139,7 +139,6 @@
 			const button = document.createElement('button');
 			button.textContent = key;
 			button.style.margin = "5px";
-			button.style.padding = "15px";  // Reduced height to make it less tall
 			button.style.fontSize = "18px";
 			button.style.cursor = "pointer";
 			button.style.border = "2px solid #3498db"; // Blue border
@@ -148,8 +147,17 @@
 			button.style.color = "#3498db"; // Blue text
 			button.style.transition = "background-color 0.3s, transform 0.1s";
 			button.style.fontFamily = "Arial, sans-serif";
+			button.style.display = "flex"; // Use flex to center the text
+			button.style.alignItems = "center"; // Vertically center the text
+			button.style.justifyContent = "center"; // Horizontally center the text
 			button.style.width = "50px"; // Square button width
 			button.style.height = "50px"; // Square button height
+
+			// If it's a Space or Backspace button, don't make it square
+			if (key === 'Space' || key === 'Backspace') {
+				button.style.width = "120px"; // Wider width for Space/Backspace
+				button.style.height = "50px"; // Same height as the other buttons
+			}
 
 			// Add hover and click effects
 			button.addEventListener('mouseover', () => {
@@ -176,6 +184,7 @@
 		keyboardContainer.appendChild(rowDiv);
 	});
 </script>
+
 
 								<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
